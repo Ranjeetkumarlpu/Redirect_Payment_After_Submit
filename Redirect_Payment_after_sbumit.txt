@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!---<title> Responsive Registration Form | CodingLab </title>--->
+    <link rel="stylesheet" href="style.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>MoveBold Foundation-Registration Form-</title>
+   </head>
+<body>
+    <?php
+    $connection=mysqli_connect('localhost:3306','userid','password','xyz_db');
+    if(isset($_POST['send'])){
+        $amount=$_POST['amount'];
+        $email=$_POST['email'];
+        $name=$_POST['name'];
+        $payment_id=$_POST['payment_id'];
+        $address=$_POST['address'];
+        
+        $request="INSERT INTO `donate` (`amount`, `email`, `name`,`payment_id`, `address`) VALUES ('$amount', '$email', '$name','$payment_id', '$address')";
+        mysqli_query($connection,$request);
+        echo "<script>
+        alert('redirecting to payment page');
+        window.location.assign('https://moveboldfoundation.org/payment');
+        </script>";
+        //header('Location:/payment/index.php');
+    }
+    //else{
+     // echo 'something went wrong please try again!';
+   //}
+   // Location: "https://moveboldfoundation.org/payment";
+    ?>
+    
+  <div class="container">
+    <center><h1>MoveBold Foundation</h1></center>
+    
+
+    <div class="title">Donate Now</div>
+    <div class="content">
+      <form action="donate1.php" method="post">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Enter Your Amount:</span>
+            <input type="text" placeholder="Enter Your Amount:" name="amount" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Enter Your Email:</span>
+            <input type="Email" placeholder="Enter Your Email:" name="email" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Enter Your Name: </span>
+            <input type="text" placeholder="Enter Your Name: " name="name"required>
+          </div>
+          <div class="input-box">
+            <span class="details">Payment_id: </span>
+            <input type="text" placeholder=" " name="payment_id" required >
+          </div>
+          <div class="input-box">
+            <span class="details">Enter Your Address:</span>
+            <input type="text" placeholder="Enter Your Address:" name="address"required>
+          </div>
+          
+          
+          </div>
+        
+  
+        <div class="button">
+            
+          <input type="submit" value="Submit" name="send">
+           
+        </div>
+        
+
+      </form>
+    </div>
+  </div>
+</body>
+</html>
